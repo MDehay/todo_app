@@ -31,7 +31,7 @@ class TodoPage extends StatelessWidget {
                   leading: Checkbox(
                       value: (isCheck) ? true : false,
                       onChanged: (value) {
-                        provider.changeValue(items[index].id);
+                        //provider.changeValue(items[index].id);
                       }),
                   title: Text(items[index].text),
                   trailing: IconButton(
@@ -53,7 +53,7 @@ class TodoPage extends StatelessWidget {
       builder: (context) {
         return SingleDialog(
           title:
-              "Voulez vous supprimer la tache ${item.id.v1().substring(0, 8)}",
+              "Voulez vous supprimer la tache ${item.id.substring(0, 8)}",
           content: Text(item.text),
           textOKButton: "Conserver",
           textCancelButton: "Supprimer",
@@ -71,7 +71,7 @@ class TodoPage extends StatelessWidget {
       builder: (context) {
         return SingleDialog(
           title:
-          "Confirmer votre choix pour la tache ${item.id.v1().substring(0, 8)}",
+          "Confirmer votre choix pour la tache ${item.id.substring(0, 8)}",
           content: Text(item.text),
           textOKButton: "Valider",
           textCancelButton: "Annuler",

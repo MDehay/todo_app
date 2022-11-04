@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tool_app/provider/TaskProvider.dart';
@@ -5,7 +7,14 @@ import 'package:tool_app/screen/Dialog/SingleDialog.dart';
 import 'package:tool_app/screen/Form/FormPage.dart';
 import 'package:tool_app/screen/Todo/TodoPage.dart';
 
-void main() {
+import 'firebase_options.dart';
+import 'modal/Task.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     ChangeNotifierProvider(
       create: (context) => TaskProvider(),
@@ -65,7 +74,8 @@ class _ControlleurPageState extends State<ControlleurPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => createTask(),
+        onPressed: () => Provider.of<TaskProvider>(context,listen: false).add(new Task(text: 'Ma Tache')),
+        //onPressed: () => Provider.of<TaskProvider>(context,listen: false).getItem(),
         child: const Icon(Icons.add),
       ),
     );

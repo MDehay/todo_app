@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>32186681146-pcgpcdpijnj4lldpj9d5m7l7j76uqe3a.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.32186681146-pcgpcdpijnj4lldpj9d5m7l7j76uqe3a</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCGrxW2N0X10l1QjJojWRDHtHUFlBfgL_Y</string>
+	<key>GCM_SENDER_ID</key>
+	<string>32186681146</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.todoApp</string>
+	<key>PROJECT_ID</key>
+	<string>foreachmaxime-3fcc4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>foreachmaxime-3fcc4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:32186681146:ios:353fcf5ccf0916094a3203</string>
+	<key>DATABASE_URL</key>
+	<string>https://foreachmaxime-3fcc4-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
