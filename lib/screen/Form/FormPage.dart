@@ -34,7 +34,7 @@ class FormPage extends StatelessWidget {
 
   void validationForm(BuildContext context) {
     if (_key.currentState!.validate()) {
-      Provider.of<TaskProvider>(context,listen: false).add(Task(text: _controller.text));
+      Provider.of<TaskProvider>(context,listen: false).addInBdd(Task(text: _controller.text));
     }
   }
 }

@@ -6,9 +6,7 @@ class Task{
   String text;
   bool isCheck;
 
-  Task({this.id = "",required this.text, this.isCheck = false}){
-    id = const Uuid().v1();
-  }
+  Task({this.id = "",required this.text, this.isCheck = false});
 
   Task.fromJson(Map<String, dynamic> json)
       : id = json['id'],

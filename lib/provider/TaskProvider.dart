@@ -11,13 +11,19 @@ class TaskProvider extends ChangeNotifier {
   TaskProvider() {
     ref.onChildAdded.listen((event) {
       var decode = jsonEncode(event.snapshot.value);
-      add(Task.fromJson(json.decode(decode)));
+      _add(Task.fromJson(json.decode(decode)));
     });
 
+    ref.onChildRemoved.listen((event) {
+      var decode = jsonEncode(event.snapshot.value);
+      _remove(Task.fromJson(json.decode(decode)));
+    });
 
+    ref.onChildChanged.listen((event) {
+      var decode = jsonEncode(event.snapshot.value);
+      _update(Task.fromJson(json.decode(decode)));
+    });
   }
-
-
 
   UnmodifiableListView<Task> get tasks => UnmodifiableListView(_tasks);
 
@@ -31,44 +37,29 @@ class TaskProvider extends ChangeNotifier {
     item.id = newChildRef.key!;
     newChildRef.set(item.toJson());
   }
-
-  void add(Task item) {
+  void _add(Task item) {
     _tasks.add(item);
     notifyListeners();
   }
-  void getItem() async {
-    String id = "-NG11mwpU7Ie7m2Z476O";
-    final snapshot = await ref.child('$id').get();
-    print(snapshot.value);
+
+  void removeInBdd(String id) async{
+    await ref.child(id).remove();
   }
 
-  void remove(Task item) {
-    _tasks.remove(item);
+  void _remove(Task task) {
+    _tasks.removeWhere((element) => element.id == task.id );
     notifyListeners();
   }
 
-  void changeValue(String id) {
-    int index = _tasks.indexWhere((element) => element.id == id);
-    _tasks[index].isCheck = !_tasks[index].isCheck;
+  void updateInBdd(Task task) async{
+    await ref.child(task.id).update(task.toJson());
+  }
+  
+  void _update(Task task){
+    int index = _tasks.indexWhere((element) => element.id == task.id);
+    _tasks[index] = task;
     notifyListeners();
   }
+
+
 }
-
-/*
-
-  void add(Task item) {
-    _tasks.add(item);
-    notifyListeners();
-  }
-
-  void remove(Task item) {
-    _tasks.remove(item);
-    notifyListeners();
-  }
-
-  void changeValue(Uuid id){
-    int index = _tasks.indexWhere((element) => element.id == id);
-    _tasks[index].isCheck = !_tasks[index].isCheck;
-    notifyListeners();
-  }
- */

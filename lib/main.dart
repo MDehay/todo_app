@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:provider/provider.dart';
 import 'package:tool_app/provider/TaskProvider.dart';
 import 'package:tool_app/screen/Dialog/SingleDialog.dart';
@@ -10,7 +11,7 @@ import 'package:tool_app/screen/Todo/TodoPage.dart';
 import 'firebase_options.dart';
 import 'modal/Task.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -51,34 +52,34 @@ class _ControlleurPageState extends State<ControlleurPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        bottom: const TabBar(
-          tabs: [
-            Tab(
-              icon: Icon(Icons.check_box_outline_blank),
+        appBar: AppBar(
+          title: Text("TO-DO List"),
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.check_box_outline_blank),
+              ),
+              Tab(
+                icon: Icon(Icons.check_box),
+              ),
+            ],
+          ),
+        ),
+        body: const TabBarView(
+          children: [
+            TodoPage(
+              isCheck: false,
             ),
-            Tab(
-              icon: Icon(Icons.check_box),
+            TodoPage(
+              isCheck: true,
             ),
           ],
         ),
-      ),
-      body: const TabBarView(
-        children: [
-          TodoPage(
-            isCheck: false,
-          ),
-          TodoPage(
-            isCheck: true,
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Provider.of<TaskProvider>(context,listen: false).add(new Task(text: 'Ma Tache')),
-        //onPressed: () => Provider.of<TaskProvider>(context,listen: false).getItem(),
-        child: const Icon(Icons.add),
-      ),
-    );
+
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => createTask(),
+          child: const Icon(Icons.add),
+        ),);
   }
 
   void createTask() {
@@ -97,5 +98,4 @@ class _ControlleurPageState extends State<ControlleurPage> {
       },
     );
   }
-
 }
